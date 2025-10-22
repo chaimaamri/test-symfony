@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departement {{ departement.mot }}{% endblock %}
+
+{% block body %}
+<h1>Departement: {{ departement.mot }}</h1>
+<p>Home: {{ departement.home }}</p>
+<p>Faculte: {% if departement.faculte %}<a href="{{ path('faculte_show', {id: departement.faculte.id}) }}">{{ departement.faculte.nom }}</a>{% else %}N/A{% endif %}</p>
+<a href="{{ path('departement_index') }}">Back to list</a>
+{% endblock %}

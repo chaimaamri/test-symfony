@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facultes{% endblock %}
+
+{% block body %}
+<h1>Facultes</h1>
+<p><a href="{{ path('faculte_new') }}">Create new Faculte</a></p>
+<table>
+    <thead>
+        <tr><th>ID</th><th>Nom</th><th>CNSS</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        {% for f in facultes %}
+            <tr>
+                <td>{{ f.id }}</td>
+                <td>{{ f.nom }}</td>
+                <td>{{ f.CNSS }}</td>
+                <td>
+                    <a href="{{ path('faculte_show', {id: f.id}) }}">Show</a>
+                    <a href="{{ path('faculte_edit', {id: f.id}) }}">Edit</a>
+                    <form action="{{ path('faculte_delete', {id: f.id}) }}" method="post" style="display:inline">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ f.id) }}">
+                        <button type="submit" onclick="return confirm('Delete?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="4">No facultes found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

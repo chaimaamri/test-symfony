@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Departements{% endblock %}
+
+{% block body %}
+<h1>Departements</h1>
+<p><a href="{{ path('departement_new') }}">Create new Departement</a></p>
+<table>
+    <thead>
+        <tr><th>ID</th><th>Mot</th><th>Home</th><th>Faculte</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        {% for d in departements %}
+            <tr>
+                <td>{{ d.id }}</td>
+                <td>{{ d.mot }}</td>
+                <td>{{ d.home }}</td>
+                <td>{{ d.faculte ? d.faculte.nom : '' }}</td>
+                <td><a href="{{ path('departement_show', {id: d.id}) }}">Show</a></td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5">No departements found.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

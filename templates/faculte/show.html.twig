@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faculte {{ faculte.nom }}{% endblock %}
+
+{% block body %}
+<h1>Faculte: {{ faculte.nom }}</h1>
+<p>CNSS: {{ faculte.CNSS }}</p>
+<h2>Departements</h2>
+<ul>
+    {% for d in faculte.departements %}
+        <li><a href="{{ path('departement_show', {id: d.id}) }}">{{ d.mot }} ({{ d.home }})</a></li>
+    {% else %}
+        <li>No departements</li>
+    {% endfor %}
+</ul>
+<a href="{{ path('faculte_index') }}">Back to list</a>
+{% endblock %}
